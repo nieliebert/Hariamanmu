@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: aliceblue);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 10px;
         }
@@ -87,7 +87,7 @@
         }
 
         .btn {
-            background: hotpink;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             padding: 15px 30px;
             border: none;
@@ -678,16 +678,36 @@
                 
                 // Calculate cycle day
                 const daysSinceLastPeriod = Math.floor((today - lastPeriod) / (1000 * 60 * 60 * 24));
-                const currentCycleDay = (daysSinceLastPeriod % cycleLength) + 1;
+                let currentCycleDay = (daysSinceLastPeriod % cycleLength) + 1;
+                
+                // Handle negative cycle days (if last period is in the future)
+                if (daysSinceLastPeriod < 0) {
+                    currentCycleDay = cycleLength + ((daysSinceLastPeriod % cycleLength) + 1);
+                }
 
-                // Calculate important dates
-                const ovulationDay = cycleLength - 14; // 14 days before next period
-                const fertileStart = ovulationDay - 5; // 5 days before ovulation
-                const fertileEnd = ovulationDay + 1; // 1 day after ovulation
+                // Calculate important dates based on current cycle
+                const currentCycleStart = new Date(lastPeriod);
+                const daysToAdd = Math.floor(daysSinceLastPeriod / cycleLength) * cycleLength;
+                currentCycleStart.setDate(lastPeriod.getDate() + daysToAdd);
+
+                // Calculate ovulation (14 days before next period)
+                const ovulationDay = cycleLength - 14;
+                const ovulationDate = new Date(currentCycleStart);
+                ovulationDate.setDate(currentCycleStart.getDate() + ovulationDay - 1);
+
+                // Calculate fertile window (5 days before ovulation to 1 day after)
+                const fertileStart = ovulationDay - 5;
+                const fertileEnd = ovulationDay + 1;
+
+                const fertileStartDate = new Date(currentCycleStart);
+                fertileStartDate.setDate(currentCycleStart.getDate() + fertileStart - 1);
+                
+                const fertileEndDate = new Date(currentCycleStart);
+                fertileEndDate.setDate(currentCycleStart.getDate() + fertileEnd - 1);
 
                 // Calculate next period
-                const nextPeriod = new Date(lastPeriod);
-                nextPeriod.setDate(lastPeriod.getDate() + cycleLength);
+                const nextPeriod = new Date(currentCycleStart);
+                nextPeriod.setDate(currentCycleStart.getDate() + cycleLength);
 
                 // Determine current status
                 let currentStatus = '';
@@ -713,45 +733,46 @@
                 statusElement.className = `status-indicator ${statusClass}`;
                 document.getElementById('statusText').textContent = currentStatus;
 
-                // Calculate safe days and date
-                let safeDaysRemaining = 0;
-                let safeEndDate = new Date();
+                // Calculate next safe period
+                let nextSafeDays = 0;
+                let nextSafeDate = new Date(today);
 
                 if (currentCycleDay <= periodLength) {
-                    safeDaysRemaining = fertileStart - currentCycleDay;
-                    safeEndDate.setDate(today.getDate() + safeDaysRemaining);
+                    // Currently menstruating - safe period starts after period ends
+                    nextSafeDays = (periodLength - currentCycleDay) + 1;
+                    nextSafeDate.setDate(today.getDate() + nextSafeDays);
                 } else if (currentCycleDay >= fertileStart && currentCycleDay <= fertileEnd) {
-                    safeDaysRemaining = cycleLength - fertileEnd + currentCycleDay;
-                    safeEndDate.setDate(today.getDate() + (cycleLength - currentCycleDay) + (cycleLength - fertileEnd));
+                    // Currently in fertile window - safe period starts after fertile window
+                    nextSafeDays = fertileEnd - currentCycleDay + 1;
+                    nextSafeDate.setDate(today.getDate() + nextSafeDays);
                 } else if (currentCycleDay > fertileEnd) {
-                    safeDaysRemaining = cycleLength - currentCycleDay;
-                    safeEndDate.setDate(today.getDate() + safeDaysRemaining);
+                    // Currently in safe period - already safe
+                    nextSafeDays = 0;
+                    nextSafeDate = new Date(today);
                 } else {
-                    safeDaysRemaining = fertileStart - currentCycleDay;
-                    safeEndDate.setDate(today.getDate() + safeDaysRemaining);
+                    // Before fertile window - currently safe
+                    nextSafeDays = 0;
+                    nextSafeDate = new Date(today);
                 }
 
                 // Update display
-                document.getElementById('safeDaysNow').textContent = Math.max(0, safeDaysRemaining);
-                document.getElementById('safeDaysDate').textContent = 
-                    safeDaysRemaining > 0 ? safeEndDate.toLocaleDateString('id-ID') : 'Hari ini aman';
-                
-                const fertileStartDate = new Date(lastPeriod);
-                fertileStartDate.setDate(lastPeriod.getDate() + fertileStart - 1);
-                const fertileEndDate = new Date(lastPeriod);
-                fertileEndDate.setDate(lastPeriod.getDate() + fertileEnd - 1);
+                if (nextSafeDays > 0) {
+                    document.getElementById('safeDaysNow').textContent = nextSafeDays;
+                    document.getElementById('safeDaysDate').textContent = nextSafeDate.toLocaleDateString('id-ID');
+                } else {
+                    document.getElementById('safeDaysNow').textContent = '0';
+                    document.getElementById('safeDaysDate').textContent = 'Hari ini aman';
+                }
                 
                 document.getElementById('fertileWindow').textContent = 
                     fertileStartDate.toLocaleDateString('id-ID') + ' - ' + fertileEndDate.toLocaleDateString('id-ID');
 
-                const ovulationDate = new Date(lastPeriod);
-                ovulationDate.setDate(lastPeriod.getDate() + ovulationDay - 1);
                 document.getElementById('ovulationDay').textContent = ovulationDate.toLocaleDateString('id-ID');
 
                 document.getElementById('nextPeriod').textContent = nextPeriod.toLocaleDateString('id-ID');
 
                 // Generate calendar
-                generateCalendar(lastPeriod, cycleLength, periodLength, ovulationDay, fertileStart, fertileEnd);
+                generateCalendar(currentCycleStart, cycleLength, periodLength, ovulationDay, fertileStart, fertileEnd);
 
                 // Hide loading and show results with animation
                 document.getElementById('loadingSection').style.display = 'none';
@@ -762,10 +783,10 @@
                     document.getElementById('resultSection').classList.add('show');
                 }, 100);
 
-            }, 1500); // 1.5 second delay for loading effect
+            }, 1500);
         }
 
-        function generateCalendar(lastPeriod, cycleLength, periodLength, ovulationDay, fertileStart, fertileEnd) {
+        function generateCalendar(currentCycleStart, cycleLength, periodLength, ovulationDay, fertileStart, fertileEnd) {
             const calendar = document.getElementById('calendar');
             calendar.innerHTML = '';
 
@@ -797,8 +818,16 @@
                 dayElement.textContent = d.getDate();
 
                 // Calculate cycle day for this date
-                const daysDiff = Math.floor((d - lastPeriod) / (1000 * 60 * 60 * 24));
-                const cycleDay = ((daysDiff % cycleLength) + cycleLength) % cycleLength + 1;
+                const daysDiff = Math.floor((d - currentCycleStart) / (1000 * 60 * 60 * 24));
+                let cycleDay = (daysDiff % cycleLength) + 1;
+                
+                // Handle negative values for dates before current cycle start
+                if (daysDiff < 0) {
+                    const previousCycleStart = new Date(currentCycleStart);
+                    previousCycleStart.setDate(currentCycleStart.getDate() - cycleLength);
+                    const daysDiffFromPrevious = Math.floor((d - previousCycleStart) / (1000 * 60 * 60 * 24));
+                    cycleDay = (daysDiffFromPrevious % cycleLength) + 1;
+                }
 
                 // Determine day type
                 if (cycleDay <= periodLength) {
@@ -807,10 +836,8 @@
                     dayElement.classList.add('ovulation');
                 } else if (cycleDay >= fertileStart && cycleDay <= fertileEnd) {
                     dayElement.classList.add('fertile');
-                } else if (cycleDay > fertileEnd || cycleDay < fertileStart - 5) {
-                    dayElement.classList.add('safe');
                 } else {
-                    dayElement.classList.add('normal');
+                    dayElement.classList.add('safe');
                 }
 
                 // Highlight today
