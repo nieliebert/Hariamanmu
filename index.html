@@ -13,9 +13,9 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: aliceblue);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 10px;
         }
 
         .container {
@@ -31,35 +31,35 @@
         .header {
             background: linear-gradient(135deg, #ff6b6b, #ee5a24);
             color: white;
-            padding: 30px;
+            padding: 20px;
             text-align: center;
         }
 
         .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-size: 1.8rem;
+            margin-bottom: 8px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .header p {
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             opacity: 0.9;
         }
 
         .main-content {
-            padding: 40px;
+            padding: 20px;
         }
 
         .input-section {
             background: #f8f9ff;
-            padding: 30px;
+            padding: 20px;
             border-radius: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             border: 2px solid #e1e8ed;
         }
 
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         label {
@@ -67,7 +67,7 @@
             font-weight: 600;
             color: #2c3e50;
             margin-bottom: 8px;
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
 
         input[type="date"], input[type="number"] {
@@ -108,9 +108,9 @@
 
         .result-section {
             background: linear-gradient(135deg, #a8edea, #fed6e3);
-            padding: 30px;
+            padding: 20px;
             border-radius: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             display: none;
             opacity: 0;
             transform: translateY(20px);
@@ -131,8 +131,8 @@
         }
 
         .spinner {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             border: 4px solid #f3f3f3;
             border-top: 4px solid #667eea;
             border-radius: 50%;
@@ -144,23 +144,16 @@
             100% { transform: rotate(360deg); }
         }
 
-        .result-date {
-            font-size: 1rem;
-            color: #e74c3c;
-            font-weight: 600;
-            margin-top: 5px;
-        }
-
         .result-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 25px;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
         }
 
         .result-card {
             background: white;
-            padding: 20px;
+            padding: 15px;
             border-radius: 12px;
             text-align: center;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -168,17 +161,17 @@
         }
 
         .result-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
         }
 
         .result-card h3 {
             color: #2c3e50;
-            margin-bottom: 10px;
-            font-size: 1.2rem;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
         }
 
         .result-value {
-            font-size: 2rem;
+            font-size: 1.4rem;
             font-weight: bold;
             color: #667eea;
             margin-bottom: 5px;
@@ -186,62 +179,135 @@
 
         .result-label {
             color: #7f8c8d;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+        }
+
+        .result-date {
+            font-size: 0.8rem;
+            color: #e74c3c;
+            font-weight: 600;
+            margin-top: 5px;
         }
 
         .calendar-section {
             background: white;
-            padding: 25px;
+            padding: 20px;
             border-radius: 12px;
-            margin-top: 20px;
+            margin-top: 15px;
             border: 2px solid #e1e8ed;
+        }
+
+        .legend {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            padding: 8px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .legend-description {
+            font-size: 0.7rem;
+            color: #6c757d;
+            margin-top: 2px;
         }
 
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
+            gap: 3px;
             margin-top: 15px;
         }
 
         .calendar-day {
-            padding: 10px 5px;
+            padding: 8px 4px;
             text-align: center;
-            border-radius: 8px;
-            font-size: 0.9rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
             font-weight: 500;
+            min-height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .calendar-header {
             background: #34495e;
             color: white;
             font-weight: bold;
+            font-size: 0.7rem;
         }
 
-        .menstruation { background: #e74c3c; color: white; }
-        .fertile { background: #f39c12; color: white; }
-        .ovulation { background: #e67e22; color: white; }
-        .safe { background: #27ae60; color: white; }
-        .normal { background: #ecf0f1; color: #2c3e50; }
+        .menstruation { 
+            background: #e74c3c; 
+            color: white; 
+            position: relative;
+        }
+        .fertile { 
+            background: #f39c12; 
+            color: white; 
+        }
+        .ovulation { 
+            background: #e67e22; 
+            color: white; 
+            font-weight: bold;
+            position: relative;
+        }
+        .ovulation::after {
+            content: '🥚';
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            font-size: 0.6rem;
+        }
+        .safe { 
+            background: #27ae60; 
+            color: white; 
+        }
+        .normal { 
+            background: #ecf0f1; 
+            color: #2c3e50; 
+        }
+
+        .today {
+            border: 3px solid #2c3e50 !important;
+            font-weight: bold !important;
+            box-shadow: 0 0 10px rgba(44, 62, 80, 0.3);
+        }
 
         .info-section {
             background: #fff;
-            padding: 30px;
+            padding: 20px;
             border-radius: 15px;
-            margin-top: 30px;
+            margin-top: 20px;
             border: 2px solid #e1e8ed;
         }
 
         .info-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: 1fr;
+            gap: 15px;
         }
 
         .info-card {
-            padding: 20px;
+            padding: 15px;
             border-radius: 12px;
-            border-left: 5px solid;
+            border-left: 4px solid;
         }
 
         .info-card.warning {
@@ -259,56 +325,165 @@
             border-color: #28a745;
         }
 
+        .info-card.danger {
+            background: #f8d7da;
+            border-color: #dc3545;
+        }
+
         .info-card h4 {
             color: #2c3e50;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
+            margin-bottom: 8px;
+            font-size: 1rem;
         }
 
         .info-card p {
             color: #5a6c7d;
             line-height: 1.6;
-            font-size: 0.95rem;
-        }
-
-        .legend {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 15px;
-            justify-content: center;
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
             font-size: 0.9rem;
+            margin: 0;
         }
 
-        .legend-color {
-            width: 20px;
-            height: 20px;
-            border-radius: 4px;
+        .status-indicator {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            text-align: center;
+            border: 2px solid;
+            font-weight: 600;
         }
 
-        @media (max-width: 768px) {
+        .status-menstruation {
+            border-color: #e74c3c;
+            color: #e74c3c;
+            background: #fdf2f2;
+        }
+
+        .status-fertile {
+            border-color: #f39c12;
+            color: #f39c12;
+            background: #fef9f3;
+        }
+
+        .status-safe {
+            border-color: #27ae60;
+            color: #27ae60;
+            background: #f2f8f4;
+        }
+
+        .tips-section {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .tip-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .tip-item h4 {
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .tip-item p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            opacity: 0.9;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 480px) {
+            body {
+                padding: 5px;
+            }
+            
             .container {
-                margin: 10px;
                 border-radius: 15px;
             }
             
             .header h1 {
-                font-size: 2rem;
+                font-size: 1.5rem;
+            }
+            
+            .header p {
+                font-size: 0.8rem;
             }
             
             .main-content {
-                padding: 25px;
+                padding: 15px;
+            }
+
+            .input-section {
+                padding: 15px;
+            }
+            
+            .result-cards {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .result-card {
+                padding: 12px;
+            }
+
+            .result-card h3 {
+                font-size: 0.85rem;
+            }
+
+            .result-value {
+                font-size: 1.2rem;
             }
             
             .calendar-day {
-                padding: 8px 3px;
-                font-size: 0.8rem;
+                padding: 6px 2px;
+                font-size: 0.7rem;
+                min-height: 28px;
+            }
+
+            .calendar-header {
+                font-size: 0.65rem;
+            }
+
+            .legend {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .legend-item {
+                font-size: 0.75rem;
+                padding: 6px;
+            }
+
+            .info-section, .tips-section {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .header h1 {
+                font-size: 1.3rem;
+            }
+            
+            .calendar-day {
+                font-size: 0.65rem;
+                min-height: 24px;
+            }
+
+            .legend-item {
+                font-size: 0.7rem;
             }
         }
     </style>
@@ -317,12 +492,12 @@
     <div class="container">
         <div class="header">
             <h1>🌸 Kalkulator Periode Aman</h1>
-            <p>Pantau siklus menstruasi dan periode aman Anda | Powered By Nuno Gans</p>
+            <p>Pantau siklus menstruasi dan periode aman Anda</p>
         </div>
 
         <div class="main-content">
             <div class="input-section">
-                <h2 style="margin-bottom: 20px; color: #2c3e50;">📊 Input Data Siklus</h2>
+                <h2 style="margin-bottom: 15px; color: #2c3e50; font-size: 1.1rem;">📊 Input Data Siklus</h2>
                 
                 <div class="form-group">
                     <label for="lastPeriod">Hari Pertama Menstruasi Terakhir:</label>
@@ -332,13 +507,13 @@
                 <div class="form-group">
                     <label for="cycleLength">Panjang Siklus Menstruasi (hari):</label>
                     <input type="number" id="cycleLength" value="28" min="21" max="35" required>
-                    <small style="color: #7f8c8d; font-size: 0.9rem;">Rata-rata 21-35 hari (normal: 28 hari)</small>
+                    <small style="color: #7f8c8d; font-size: 0.8rem;">Rata-rata 21-35 hari (normal: 28 hari)</small>
                 </div>
 
                 <div class="form-group">
                     <label for="periodLength">Lama Menstruasi (hari):</label>
                     <input type="number" id="periodLength" value="5" min="3" max="8" required>
-                    <small style="color: #7f8c8d; font-size: 0.9rem;">Rata-rata 3-8 hari (normal: 5 hari)</small>
+                    <small style="color: #7f8c8d; font-size: 0.8rem;">Rata-rata 3-8 hari (normal: 5 hari)</small>
                 </div>
 
                 <button class="btn" onclick="calculateSafePeriod()">🔄 Hitung Periode Aman</button>
@@ -349,11 +524,15 @@
             </div>
 
             <div class="result-section" id="resultSection">
-                <h2 style="margin-bottom: 20px; color: #2c3e50; text-align: center;">📈 Hasil Perhitungan</h2>
+                <div class="status-indicator" id="currentStatus">
+                    <div id="statusText">Status saat ini</div>
+                </div>
+
+                <h2 style="margin-bottom: 15px; color: #2c3e50; text-align: center; font-size: 1.1rem;">📈 Hasil Perhitungan</h2>
                 
                 <div class="result-cards">
                     <div class="result-card">
-                        <h3>Hari Aman Sekarang</h3>
+                        <h3>Hari Aman Berikutnya</h3>
                         <div class="result-value" id="safeDaysNow">-</div>
                         <div class="result-label">hari lagi</div>
                         <div class="result-date" id="safeDaysDate">-</div>
@@ -364,7 +543,7 @@
                         <div class="result-label">tanggal</div>
                     </div>
                     <div class="result-card">
-                        <h3>Ovulasi</h3>
+                        <h3>Hari Ovulasi</h3>
                         <div class="result-value" id="ovulationDay">-</div>
                         <div class="result-label">tanggal</div>
                     </div>
@@ -376,24 +555,36 @@
                 </div>
 
                 <div class="calendar-section">
-                    <h3 style="color: #2c3e50; margin-bottom: 15px; text-align: center;">📅 Kalender Siklus</h3>
+                    <h3 style="color: #2c3e50; margin-bottom: 15px; text-align: center; font-size: 1rem;">📅 Kalender Siklus</h3>
                     
                     <div class="legend">
                         <div class="legend-item">
                             <div class="legend-color menstruation"></div>
-                            <span>Menstruasi</span>
+                            <div>
+                                <div><strong>Menstruasi</strong></div>
+                                <div class="legend-description">Keluarnya darah haid</div>
+                            </div>
                         </div>
                         <div class="legend-item">
                             <div class="legend-color fertile"></div>
-                            <span>Periode Subur</span>
+                            <div>
+                                <div><strong>Periode Subur</strong></div>
+                                <div class="legend-description">Kemungkinan hamil tinggi</div>
+                            </div>
                         </div>
                         <div class="legend-item">
                             <div class="legend-color ovulation"></div>
-                            <span>Ovulasi</span>
+                            <div>
+                                <div><strong>Ovulasi 🥚</strong></div>
+                                <div class="legend-description">Pelepasan sel telur</div>
+                            </div>
                         </div>
                         <div class="legend-item">
                             <div class="legend-color safe"></div>
-                            <span>Hari Aman</span>
+                            <div>
+                                <div><strong>Hari Aman</strong></div>
+                                <div class="legend-description">Kemungkinan hamil rendah</div>
+                            </div>
                         </div>
                     </div>
 
@@ -404,27 +595,58 @@
             </div>
 
             <div class="info-section">
-                <h2 style="margin-bottom: 25px; color: #2c3e50; text-align: center;">📚 Informasi Penting</h2>
+                <h2 style="margin-bottom: 20px; color: #2c3e50; text-align: center; font-size: 1.1rem;">📚 Informasi Penting</h2>
                 
                 <div class="info-cards">
                     <div class="info-card warning">
-                        <h4>⚠️ Perhatian</h4>
-                        <p>Kalender ini hanya perkiraan berdasarkan siklus rata-rata. Tidak 100% akurat untuk kontrasepsi. Konsultasikan dengan dokter untuk metode KB yang tepat.</p>
+                        <h4>⚠️ Perhatian Penting</h4>
+                        <p>Kalender ini hanya perkiraan berdasarkan siklus rata-rata. Tidak 100% akurat untuk kontrasepsi. Selalu konsultasikan dengan dokter untuk metode KB yang tepat dan aman.</p>
                     </div>
                     
                     <div class="info-card info">
-                        <h4>🔬 Periode Subur</h4>
-                        <p>Periode subur adalah 5 hari sebelum ovulasi hingga 1 hari setelah ovulasi. Sperma dapat bertahan 5 hari dalam tubuh wanita.</p>
+                        <h4>🔬 Periode Subur (Warna Oranye)</h4>
+                        <p>Periode subur adalah 5 hari sebelum ovulasi hingga 1 hari setelah ovulasi. Sperma dapat bertahan hingga 5 hari dalam tubuh wanita, sehingga kehamilan dapat terjadi.</p>
                     </div>
                     
                     <div class="info-card success">
-                        <h4>✅ Hari Aman</h4>
-                        <p>Hari aman adalah periode dengan kemungkinan kehamilan rendah, yaitu setelah ovulasi hingga menstruasi berikutnya, dan beberapa hari setelah menstruasi.</p>
+                        <h4>✅ Hari Aman (Warna Hijau)</h4>
+                        <p>Hari aman adalah periode dengan kemungkinan kehamilan rendah, yaitu setelah ovulasi hingga menstruasi berikutnya, dan beberapa hari setelah menstruasi berakhir.</p>
+                    </div>
+                    
+                    <div class="info-card danger">
+                        <h4>🩸 Menstruasi (Warna Merah)</h4>
+                        <p>Periode menstruasi adalah waktu keluarnya darah haid. Meski kemungkinan hamil rendah, masih ada risiko kecil terutama untuk siklus pendek atau tidak teratur.</p>
                     </div>
                     
                     <div class="info-card info">
-                        <h4>🎯 Ovulasi</h4>
-                        <p>Ovulasi biasanya terjadi 14 hari sebelum menstruasi berikutnya. Ini adalah waktu paling subur dalam siklus.</p>
+                        <h4>🎯 Ovulasi (Warna Oranye Tua + 🥚)</h4>
+                        <p>Ovulasi biasanya terjadi 14 hari sebelum menstruasi berikutnya. Ini adalah waktu paling subur dalam siklus ketika sel telur dilepaskan dari ovarium.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tips-section">
+                <h2 style="margin-bottom: 15px; text-align: center; font-size: 1.1rem;">💡 Tips Kesehatan Reproduksi</h2>
+                
+                <div class="tips-grid">
+                    <div class="tip-item">
+                        <h4>📱 Catat Siklus Anda</h4>
+                        <p>Selalu catat tanggal menstruasi Anda setiap bulan untuk membantu dokter memahami pola siklus Anda.</p>
+                    </div>
+                    
+                    <div class="tip-item">
+                        <h4>🏥 Konsultasi Rutin</h4>
+                        <p>Lakukan pemeriksaan kesehatan reproduksi rutin minimal 1 tahun sekali atau jika ada keluhan.</p>
+                    </div>
+                    
+                    <div class="tip-item">
+                        <h4>🥗 Pola Hidup Sehat</h4>
+                        <p>Makan bergizi, olahraga teratur, dan tidur cukup membantu menjaga siklus menstruasi tetap teratur.</p>
+                    </div>
+                    
+                    <div class="tip-item">
+                        <h4>⚠️ Waspadai Gejala</h4>
+                        <p>Segera konsultasi jika mengalami nyeri berlebihan, siklus sangat tidak teratur, atau perdarahan abnormal.</p>
                     </div>
                 </div>
             </div>
@@ -467,25 +689,44 @@
                 const nextPeriod = new Date(lastPeriod);
                 nextPeriod.setDate(lastPeriod.getDate() + cycleLength);
 
+                // Determine current status
+                let currentStatus = '';
+                let statusClass = '';
+                
+                if (currentCycleDay <= periodLength) {
+                    currentStatus = '🩸 Sedang Menstruasi';
+                    statusClass = 'status-menstruation';
+                } else if (currentCycleDay >= fertileStart && currentCycleDay <= fertileEnd) {
+                    if (currentCycleDay === ovulationDay) {
+                        currentStatus = '🥚 Hari Ovulasi - Paling Subur';
+                    } else {
+                        currentStatus = '🌟 Periode Subur';
+                    }
+                    statusClass = 'status-fertile';
+                } else {
+                    currentStatus = '✅ Hari Aman';
+                    statusClass = 'status-safe';
+                }
+
+                // Update status display
+                const statusElement = document.getElementById('currentStatus');
+                statusElement.className = `status-indicator ${statusClass}`;
+                document.getElementById('statusText').textContent = currentStatus;
+
                 // Calculate safe days and date
                 let safeDaysRemaining = 0;
                 let safeEndDate = new Date();
-                let currentStatus = '';
 
                 if (currentCycleDay <= periodLength) {
-                    currentStatus = 'Menstruasi';
                     safeDaysRemaining = fertileStart - currentCycleDay;
                     safeEndDate.setDate(today.getDate() + safeDaysRemaining);
                 } else if (currentCycleDay >= fertileStart && currentCycleDay <= fertileEnd) {
-                    currentStatus = 'Periode Subur';
                     safeDaysRemaining = cycleLength - fertileEnd + currentCycleDay;
                     safeEndDate.setDate(today.getDate() + (cycleLength - currentCycleDay) + (cycleLength - fertileEnd));
                 } else if (currentCycleDay > fertileEnd) {
-                    currentStatus = 'Hari Aman';
                     safeDaysRemaining = cycleLength - currentCycleDay;
                     safeEndDate.setDate(today.getDate() + safeDaysRemaining);
                 } else {
-                    currentStatus = 'Hari Aman';
                     safeDaysRemaining = fertileStart - currentCycleDay;
                     safeEndDate.setDate(today.getDate() + safeDaysRemaining);
                 }
@@ -537,11 +778,18 @@
                 calendar.appendChild(header);
             });
 
-            // Calculate calendar range (show 6 weeks)
-            const startDate = new Date(lastPeriod);
-            startDate.setDate(1); // First day of month
-            const endDate = new Date(startDate);
-            endDate.setDate(endDate.getDate() + 41); // 6 weeks
+            // Calculate calendar range (show current month + 1 month)
+            const today = new Date();
+            const startDate = new Date(today.getFullYear(), today.getMonth(), 1);
+            const endDate = new Date(today.getFullYear(), today.getMonth() + 2, 0);
+
+            // Add empty cells for proper alignment
+            const firstDayOfWeek = startDate.getDay();
+            for (let i = 0; i < firstDayOfWeek; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day normal';
+                calendar.appendChild(emptyDay);
+            }
 
             for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
                 const dayElement = document.createElement('div');
@@ -566,10 +814,8 @@
                 }
 
                 // Highlight today
-                const today = new Date();
                 if (d.toDateString() === today.toDateString()) {
-                    dayElement.style.border = '3px solid #2c3e50';
-                    dayElement.style.fontWeight = 'bold';
+                    dayElement.classList.add('today');
                 }
 
                 calendar.appendChild(dayElement);
@@ -583,6 +829,9 @@
                 setTimeout(calculateSafePeriod, 500);
             }
         };
+
+        // Add touch feedback for mobile
+        document.addEventListener('touchstart', function() {}, true);
     </script>
 </body>
 </html>
